@@ -1,0 +1,28 @@
+{
+  "name": "mchairs",
+  "version": "0.0.1",
+  "description": "Musical Chairs for Slack",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp test",
+    "start": "node server.js"
+  },
+  "pre-commit": {
+    "run" : ["test"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchairs/bot.git"
+  },
+  "author": "mchairs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mchairs/bot/issues"
+  },
+  "homepage": "https://github.com/mchairs/bot#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
+    "pre-commit": "^1.1.2"
+  }
+}
