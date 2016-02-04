@@ -7,7 +7,7 @@ npm install
 
 also
 
-gulp start
-gulp lint
-gulp style
-gulp test
+* gulp start
+* gulp lint
+* gulp style
+* gulp test
