@@ -5,7 +5,7 @@
 musical chairs for slack - bot
 
 ### usage
-<br/>
+
 `npm install`
 
 also
