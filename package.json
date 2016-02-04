@@ -8,7 +8,9 @@
     "start": "node server.js"
   },
   "pre-commit": {
-    "run" : ["test"]
+    "run": [
+      "test"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.0.6",
     "pre-commit": "^1.1.2"
   }
 }
