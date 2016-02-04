@@ -1,0 +1,7 @@
+{
+  "preset": "grunt",
+  "requireCurlyBraces": true,
+  "excludeFiles": ["node_modules/**"],
+  "disallowMixedSpacesAndTabs" : true,
+  "disallowTrailingComma": true
+}

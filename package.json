@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "gulp test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "gulp lint",
+    "style": "gulp style"
   },
   "pre-commit": {
     "run": [
-      "test"
+      "lint", "style", "test"
     ]
   },
   "repository": {
@@ -24,6 +26,8 @@
   "homepage": "https://github.com/mchairs/bot#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-jscs": "^3.0.2",
     "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "^2.0.6",
     "pre-commit": "^1.1.2"
