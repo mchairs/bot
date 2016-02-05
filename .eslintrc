@@ -1,6 +1,10 @@
 {
-"env": {
-  "node": true
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "env": {
+    "node": true,
+    "es6": true
   },
   "rules": {
     "block-scoped-var": 1,
@@ -46,4 +50,4 @@
     "no-shadow": 0,
     "no-irregular-whitespace": 0
   }
-  }
+}
