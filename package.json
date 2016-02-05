@@ -11,7 +11,9 @@
   },
   "pre-commit": {
     "run": [
-      "lint", "style", "test"
+      "lint",
+      "style",
+      "test"
     ]
   },
   "repository": {
@@ -25,11 +27,14 @@
   },
   "homepage": "https://github.com/mchairs/bot#readme",
   "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
     "gulp-jscs": "^3.0.2",
     "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "^2.0.6",
+    "mocha": "^2.4.5",
     "pre-commit": "^1.1.2"
   }
 }
