@@ -3,6 +3,7 @@ var mocha = require('gulp-mocha');
 var nodemon = require('gulp-nodemon');
 var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
+var babel = require('babel-core/register')
 
 gulp.task('default', function() {
   nodemon({
@@ -15,10 +16,13 @@ gulp.task('default', function() {
 });
 
 gulp.task('test', function() {
-  return gulp.src(['tests/**.js'], {
+  return gulp.src(['tests/**/*.js'], {
     read: false
   }).pipe(mocha({
-    reporter: 'nyan'
+    reporter: 'nyan',
+    compilers: {
+      js: babel
+    }
   }));
 });
 
