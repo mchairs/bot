@@ -96,7 +96,7 @@ describe('Game', () => {
       let g = new Game(blueTeam, done);
       g.tryToSit(blueTeam[0], 0);
       g.tryToSit(blueTeam[1], 1);
-      g.tryToSit(blueTeam[2], 2)
+      g.tryToSit(blueTeam[2], 2);
       assert.equal(done.called, true);
     });
   });

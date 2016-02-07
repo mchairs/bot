@@ -24,7 +24,7 @@ export default class Game {
   tryToSit(playerID, chairIndex) {
     if (this.canSit(playerID, chairIndex)) {
       this.sit(this.players[playerID], this.chairs[chairIndex]);
-      this.checkDone()
+      this.checkDone();
       return true;
     }
 
@@ -43,10 +43,10 @@ export default class Game {
 
   canSit(playerID, chairIndex) {
     let c = this.chairs[chairIndex];
-    return this.isValidChair(chairIndex)
-      && this.isValidPlayer(playerID)
-      && !c.isOccupied()
-      && !c.hasSat(this.players[playerID]);
+    return this.isValidChair(chairIndex) &&
+      this.isValidPlayer(playerID) &&
+      !c.isOccupied() &&
+      !c.hasSat(this.players[playerID]);
   }
 
   isValidChair(chairIndex) {
@@ -75,10 +75,10 @@ export default class Game {
 
   canForce(playerID, chairIndex) {
     let p = this.players[playerID];
-    return this.isValidPlayer(playerID)
-      && this.isValidChair(chairIndex)
-      && p.hasTheForce
-      && !this.chairs[chairIndex].hasSat(p);
+    return this.isValidPlayer(playerID) &&
+     this.isValidChair(chairIndex) &&
+     p.hasTheForce &&
+     !this.chairs[chairIndex].hasSat(p);
   }
 
 };
