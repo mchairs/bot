@@ -99,5 +99,13 @@ describe('Game', () => {
       g.tryToSit(blueTeam[2], 2);
       assert.equal(done.called, true);
     });
+
+    it('done is not called when only some seats have been taken', () => {
+      let done = sinon.spy();
+      let g = new Game(blueTeam, done);
+      g.tryToSit(blueTeam[0], 0);
+      g.tryToSit(blueTeam[1], 1);
+      assert.equal(done.called, false);
+    });
   });
 });
