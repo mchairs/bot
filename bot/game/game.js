@@ -6,7 +6,7 @@ import Chair from './chair.js';
 
 export default class Game {
   constructor(players, done) {
-    this.fnDone = done;
+    this.done = done;
     this.numChairs = players.length - 1;
     this.players = {};
     this.chairs = {};
@@ -38,7 +38,15 @@ export default class Game {
   }
 
   isGameOver() {
-    return false;
+    // games over if all chairs are occupied
+    for (var key in this.chairs) {
+      if (this.chairs.hasOwnProperty(key) &&
+        this.chairs[key].isOccupied() === false) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   canSit(playerID, chairIndex) {
