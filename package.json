@@ -37,5 +37,8 @@
     "mocha": "^2.4.5",
     "pre-commit": "^1.1.2",
     "sinon": "^1.17.2"
+  },
+  "dependencies": {
+    "botkit": "0.0.5"
   }
 }
