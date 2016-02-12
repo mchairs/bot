@@ -5,7 +5,7 @@ var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
 var babel = require('babel-core/register')
 
-gulp.task('default', function() {
+gulp.task('default', () => {
   nodemon({
     script: 'server.js',
     ext: 'js html',
@@ -15,7 +15,7 @@ gulp.task('default', function() {
   });
 });
 
-gulp.task('test', function() {
+gulp.task('test', () => {
   return gulp.src(['tests/**/*.js'], {
     read: false
   }).pipe(mocha({
@@ -26,14 +26,14 @@ gulp.task('test', function() {
   }));
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', () => {
   return gulp.src(['bot/**/*.js', 'tests/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
 
-gulp.task('style', function() {
+gulp.task('style', () => {
   return gulp.src(['bot/**/*.js', 'tests/**/*.js'])
     .pipe(jscs())
     .pipe(jscs.reporter());
