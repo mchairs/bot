@@ -11,7 +11,9 @@ musical chairs for slack - bot
 
 also
 
-`gulp start` <br/>
+`gulp` starts the application <br/>
+`gulp clean` cleans stuff <br/>
+`gulp compile` transpiles stuff <br/>
 `gulp lint` <br/>
 `gulp style` <br/>
 `gulp test` </br>
