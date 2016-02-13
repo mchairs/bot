@@ -7,6 +7,8 @@ var babelC = require('babel-core/register');
 var babel = require('gulp-babel');
 var clean = require('gulp-clean');
 var Cache = require('gulp-file-cache');
+var istanbul = require('gulp-istanbul');
+var isparta = require('isparta');
 
 gulp.task('clean', () => {
   gulp.src(['dist', '.gulp-cache'], {read:false}).pipe(clean());
@@ -57,4 +59,29 @@ gulp.task('style', () => {
   gulp.src(['src/**/*.js', 'tests/**/*.js'])
     .pipe(jscs())
     .pipe(jscs.reporter());
+});
+
+gulp.task('clean-coverage', () => gulp.src(['coverage'], {read:false}).pipe(clean()));
+
+gulp.task('coverage', ['clean-coverage'], () => {
+  gulp.src(['src/**/*.js'])
+    .pipe(istanbul({
+      instrumenter: isparta.Instrumenter,
+      includeUntested: true
+    }))
+    .pipe(istanbul.hookRequire())
+    .on('finish', () => {
+      gulp.src('test/**/*.js', {read: false})
+        .pipe(mocha({
+          reporter: 'nyan',
+          compilers: {
+            js: babelC
+          }
+        }))
+       .pipe(istanbul.writeReports({
+           dir: 'coverage',
+           reportOpts: {dir: 'coverage'},
+           reporters: ['text', 'text-summary', 'json', 'html']
+       }));
+    });
 });
