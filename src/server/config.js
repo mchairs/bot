@@ -1,5 +1,5 @@
 'use strict';
 
 export default {
-  ok: () => process.env.cliendId && process.env.clientSecret && process.env.port
+  ok: () => process.env.CLIENT_ID && process.env.CLIENT_SECRET && process.env.PORT
 };
