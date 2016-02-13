@@ -14,6 +14,6 @@ also
 `gulp` starts the application <br/>
 `gulp clean` cleans stuff <br/>
 `gulp compile` transpiles stuff <br/>
-`gulp lint` <br/>
-`gulp style` <br/>
-`gulp test` </br>
+`gulp lint` makes sure you're not a bad developer <br/>
+`gulp style` makes sure you're not a lazy developer <br/>
+`gulp test` makes sure you're not crazy </br>
