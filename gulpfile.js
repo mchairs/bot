@@ -47,14 +47,14 @@ gulp.task('test', () => {
 });
 
 gulp.task('lint', () => {
-  gulp.src(['bot/**/*.js', 'tests/**/*.js'])
+  gulp.src(['src/**/*.js', 'tests/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
 
 gulp.task('style', () => {
-  gulp.src(['bot/**/*.js', 'tests/**/*.js'])
+  gulp.src(['src/**/*.js', 'tests/**/*.js'])
     .pipe(jscs())
     .pipe(jscs.reporter());
 });
