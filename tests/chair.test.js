@@ -1,4 +1,4 @@
-import Chair from '../bot/game/chair.js';
+import Chair from '../src/server/bot/game/chair.js';
 import assert from 'assert';
 
 describe('Chair', () => {
