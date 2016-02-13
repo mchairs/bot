@@ -17,5 +17,5 @@ also
 `gulp lint` makes sure you're not a bad developer <br/>
 `gulp style` makes sure you're not a lazy developer <br/>
 `gulp test` makes sure you're not crazy <br/>
-`gulp clean-coverage` cleans coverage stuff <br/>
-`gulp coverage` makes sure you're not a bad tester <br/>
+`gulp clean-cover` cleans coverage stuff <br/>
+`gulp cover` makes sure you're not a bad tester <br/>

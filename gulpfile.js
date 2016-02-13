@@ -61,9 +61,9 @@ gulp.task('style', () => {
     .pipe(jscs.reporter());
 });
 
-gulp.task('clean-coverage', () => gulp.src(['coverage'], {read:false}).pipe(clean()));
+gulp.task('clean-cover', () => gulp.src(['coverage'], {read:false}).pipe(clean()));
 
-gulp.task('coverage', ['clean-coverage'], () => {
+gulp.task('cover', ['clean-cover'], () => {
   gulp.src(['src/**/*.js'])
     .pipe(istanbul({
       instrumenter: isparta.Instrumenter,
@@ -81,7 +81,7 @@ gulp.task('coverage', ['clean-coverage'], () => {
        .pipe(istanbul.writeReports({
            dir: 'coverage',
            reportOpts: {dir: 'coverage'},
-           reporters: ['text', 'text-summary', 'json', 'html']
+           reporters: ['lcov', 'text', 'text-summary', 'json', 'html']
        }));
     });
 });
