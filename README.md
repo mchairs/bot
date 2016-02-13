@@ -2,6 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/mchairs/bot/badge.svg?branch=master)](https://coveralls.io/github/mchairs/bot?branch=master)
 [![devDependency Status](https://david-dm.org/mchairs/bot/dev-status.svg)](https://david-dm.org/mchairs/bot#info=devDependencies)
 [![Dependency Status](https://david-dm.org/mchairs/bot.svg)](https://david-dm.org/mchairs/bot)
+[![Code Climate](https://codeclimate.com/github/mchairs/bot/badges/gpa.svg)](https://codeclimate.com/github/mchairs/bot)
 
 # bot
 
