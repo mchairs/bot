@@ -7,6 +7,8 @@ var babelC = require('babel-core/register');
 var babel = require('gulp-babel');
 var clean = require('gulp-clean');
 var Cache = require('gulp-file-cache');
+var istanbul = require('gulp-istanbul');
+var isparta = require('isparta');
 
 gulp.task('clean', () => {
   gulp.src(['dist', '.gulp-cache'], {read:false}).pipe(clean());
@@ -36,7 +38,7 @@ gulp.task('start', ['compile'], () => {
 gulp.task('default', ['start']);
 
 gulp.task('test', () => {
-  gulp.src(['tests/**/*.js'], {
+  gulp.src(['test/**/*.js'], {
     read: false
   }).pipe(mocha({
     reporter: 'nyan',
@@ -47,14 +49,39 @@ gulp.task('test', () => {
 });
 
 gulp.task('lint', () => {
-  gulp.src(['bot/**/*.js', 'tests/**/*.js'])
+  gulp.src(['src/**/*.js', 'tests/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
 
 gulp.task('style', () => {
-  gulp.src(['bot/**/*.js', 'tests/**/*.js'])
+  gulp.src(['src/**/*.js', 'tests/**/*.js'])
     .pipe(jscs())
     .pipe(jscs.reporter());
+});
+
+gulp.task('clean-cover', () => gulp.src(['coverage'], {read:false}).pipe(clean()));
+
+gulp.task('cover', ['clean-cover'], () => {
+  gulp.src(['src/**/*.js'])
+    .pipe(istanbul({
+      instrumenter: isparta.Instrumenter,
+      includeUntested: true
+    }))
+    .pipe(istanbul.hookRequire())
+    .on('finish', () => {
+      gulp.src('test/**/*.js', {read: false})
+        .pipe(mocha({
+          reporter: 'nyan',
+          compilers: {
+            js: babelC
+          }
+        }))
+       .pipe(istanbul.writeReports({
+           dir: 'coverage',
+           reportOpts: {dir: 'coverage'},
+           reporters: ['lcov', 'text', 'text-summary', 'json', 'html']
+       }));
+    });
 });
