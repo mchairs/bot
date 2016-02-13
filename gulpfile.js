@@ -16,7 +16,6 @@ gulp.task('start', ['compile'], () => {
   nodemon({
     script: 'dist/server.js',
     ext: 'js',
-    tasks: ['compile'],
     env: {
       'NODE_ENV': 'development'
     }
