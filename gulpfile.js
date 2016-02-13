@@ -3,37 +3,46 @@ var mocha = require('gulp-mocha');
 var nodemon = require('gulp-nodemon');
 var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
-var babel = require('babel-core/register')
+var babelC = require('babel-core/register');
+var babel = require('gulp-babel');
 
-gulp.task('default', function() {
+gulp.task('compile', () => {
+  gulp.src(['bot/**/*.js', 'server.js'])
+      .pipe(babel())
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('start', ['compile'], () => {
   nodemon({
-    script: 'server.js',
-    ext: 'js html',
+    script: 'dist/server.js',
+    ext: 'js',
     env: {
       'NODE_ENV': 'development'
     }
   });
 });
 
-gulp.task('test', function() {
+gulp.task('default', ['start']);
+
+gulp.task('test', () => {
   return gulp.src(['tests/**/*.js'], {
     read: false
   }).pipe(mocha({
     reporter: 'nyan',
     compilers: {
-      js: babel
+      js: babelC
     }
   }));
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', () => {
   return gulp.src(['bot/**/*.js', 'tests/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
 });
 
-gulp.task('style', function() {
+gulp.task('style', () => {
   return gulp.src(['bot/**/*.js', 'tests/**/*.js'])
     .pipe(jscs())
     .pipe(jscs.reporter());

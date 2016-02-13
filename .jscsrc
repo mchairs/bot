@@ -2,7 +2,7 @@
   "esnext": true,
   "preset": "grunt",
   "requireCurlyBraces": true,
-  "excludeFiles": ["node_modules/**"],
+  "excludeFiles": ["node_modules/**", "dist"],
   "disallowMixedSpacesAndTabs" : true,
   "disallowTrailingComma": true
 }
