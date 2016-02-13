@@ -2,7 +2,7 @@
   "esnext": true,
   "preset": "grunt",
   "requireCurlyBraces": true,
-  "excludeFiles": ["node_modules/**", "dist", ".gulp-cache"],
+  "excludeFiles": ["node_modules/**", "dist", ".gulp-cache", "npm-debug.log"],
   "disallowMixedSpacesAndTabs" : true,
   "disallowTrailingComma": true
 }
