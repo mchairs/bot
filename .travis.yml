@@ -4,3 +4,6 @@ script:
   - gulp lint
   - gulp style
   - gulp test
+
+after_success:
+  - gulp coveralls
