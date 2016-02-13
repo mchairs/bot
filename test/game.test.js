@@ -1,6 +1,6 @@
 'use strict';
 
-import Game from '../src/server/bot/game/game.js';
+import Game from '../src/server/game/game.js';
 import assert from 'assert';
 import sinon from 'sinon';
 

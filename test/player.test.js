@@ -1,4 +1,4 @@
-import Player from '../src/server/bot/game/player.js';
+import Player from '../src/server/game/player.js';
 import assert from 'assert';
 
 describe('Player', () => {
