@@ -61,6 +61,8 @@ gulp.task('style', () => {
     .pipe(jscs.reporter());
 });
 
+gulp.task('check', ['lint', 'style', 'cover']);
+
 gulp.task('clean-cover', () => gulp.src(['coverage'], {read:false}).pipe(clean()));
 
 gulp.task('cover', ['clean-cover'], () => {
