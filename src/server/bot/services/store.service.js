@@ -1,6 +1,6 @@
-import channel from './channel.controller.js';
-import team from './team.controller.js';
-import user from './user.controller.js';
+import channel from './channel.service.js';
+import team from './team.service.js';
+import user from './user.service.js';
 
 export default {
   teams: {

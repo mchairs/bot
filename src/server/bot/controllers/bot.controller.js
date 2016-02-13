@@ -1,5 +1,5 @@
 import botkit from 'botkit';
-import store from './store.controller.js';
+import store from '../services/store.service.js';
 
 export default botkit.slackbot({
   storage: store
