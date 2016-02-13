@@ -36,7 +36,7 @@ gulp.task('start', ['compile'], () => {
 gulp.task('default', ['start']);
 
 gulp.task('test', () => {
-  gulp.src(['tests/**/*.js'], {
+  gulp.src(['test/**/*.js'], {
     read: false
   }).pipe(mocha({
     reporter: 'nyan',
