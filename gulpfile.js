@@ -3,17 +3,27 @@ var mocha = require('gulp-mocha');
 var nodemon = require('gulp-nodemon');
 var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
-var babel = require('babel-core/register')
+var babelC = require('babel-core/register');
+var babel = require('gulp-babel');
 
-gulp.task('default', () => {
+gulp.task('compile', () => {
+  gulp.src(['bot/**/*.js', 'server.js'])
+      .pipe(babel())
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('start', ['compile'], () => {
   nodemon({
-    script: 'server.js',
-    ext: 'js html',
+    script: 'dist/server.js',
+    ext: 'js',
+    tasks: ['compile'],
     env: {
       'NODE_ENV': 'development'
     }
   });
 });
+
+gulp.task('default', ['start']);
 
 gulp.task('test', () => {
   return gulp.src(['tests/**/*.js'], {
@@ -21,7 +31,7 @@ gulp.task('test', () => {
   }).pipe(mocha({
     reporter: 'nyan',
     compilers: {
-      js: babel
+      js: babelC
     }
   }));
 });
