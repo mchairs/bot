@@ -1,3 +1,4 @@
+[![Slack Status](https://mchairs-slack.herokuapp.com/badge.svg)](https://mchairs-slack.herokuapp.com)
 [![Build Status](https://travis-ci.org/mchairs/bot.svg?branch=master)](https://travis-ci.org/mchairs/bot)
 [![Coverage Status](https://coveralls.io/repos/github/mchairs/bot/badge.svg?branch=master)](https://coveralls.io/github/mchairs/bot?branch=master)
 [![devDependency Status](https://david-dm.org/mchairs/bot/dev-status.svg)](https://david-dm.org/mchairs/bot#info=devDependencies)
