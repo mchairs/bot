@@ -1,15 +1,17 @@
-import Channel from '../documents/channel.doc.js';
+'use strict';
 
-export default {
-  get: () => {
+//let Channel = require('../documents/channel.doc.js');
 
-  },
+module.exports = {
+    get: () => {
 
-  save: () => {
+    },
 
-  },
+    save: () => {
 
-  all: () => {
-    
-  }
+    },
+
+    all: () => {
+
+    }
 };

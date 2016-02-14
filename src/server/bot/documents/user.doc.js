@@ -1,10 +1,12 @@
-import mongoose from 'mongoose';
+'use strict';
+
+let mongoose = require('mongoose');
 
 let UserSchema = mongoose.Schema({
 
 }, {
-  // I am not sure what yet composes a 'User'
-  strict: false
+    // I am not sure what yet composes a 'User'
+    strict: false
 });
 
-export default mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

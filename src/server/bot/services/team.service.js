@@ -1,15 +1,17 @@
-import Team from '../documents/team.doc.js';
+'use strict';
 
-export default {
-  get: () => {
+//let Team = require('../documents/team.doc.js');
 
-  },
+module.exports = {
+    get: () => {
 
-  save: () => {
+    },
 
-  },
+    save: () => {
 
-  all: () => {
+    },
 
-  }
+    all: () => {
+
+    }
 };
