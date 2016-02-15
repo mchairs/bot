@@ -1,17 +1,18 @@
 'use strict';
 
-//let Team = require('../documents/team.doc.js');
+let Team = require('../documents/team.doc.js');
 
 module.exports = {
-    get: () => {
-
+    get: (teamId, done) => {
+        Team.find({teamId: teamId}, done);
+    },
+    
+    save: (teamData, done) => {
+        new Team(teamData)
+        .save(done);
     },
 
-    save: () => {
-
-    },
-
-    all: () => {
-
+    all: (done) => {
+        Team.find({}, done);
     }
 };

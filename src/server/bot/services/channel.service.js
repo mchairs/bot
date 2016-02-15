@@ -1,17 +1,17 @@
 'use strict';
 
-//let Channel = require('../documents/channel.doc.js');
+let Channel = require('../documents/channel.doc.js');
 
 module.exports = {
-    get: () => {
-
+    get: (channelId, done) => {
+        Channel.find({channelId: channelId}, done);
+    },
+    
+    save: (channelData, done) => {
+        new Channel(channelData).save(done);
     },
 
-    save: () => {
-
-    },
-
-    all: () => {
-
+    all: (done) => {
+        Channel.find({}, done);
     }
 };

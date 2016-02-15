@@ -27,7 +27,7 @@ gulp.task('lint', () => {
     gulp.src(['src/**/*.js', 'tests/**/*.js'])
         .pipe(eslint())
         .pipe(eslint.format())
-        .pipe(eslint.failOnError());
+        .pipe(eslint.failAfterError());
 });
 
 gulp.task('check', ['lint', 'cover']);
