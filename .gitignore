@@ -1,5 +1,5 @@
 node_modules
-dist
 .gulp-cache
 npm-debug.log
 coverage
+.env

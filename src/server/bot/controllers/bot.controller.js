@@ -1,6 +1,8 @@
-import botkit from 'botkit';
-import store from '../services/store.service.js';
+'use strict';
 
-export default botkit.slackbot({
-  storage: store
+let botkit = require('botkit');
+let store = require('../services/store.service.js');
+
+module.exports = botkit.slackbot({
+    storage: store
 });

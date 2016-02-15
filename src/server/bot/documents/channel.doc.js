@@ -1,10 +1,12 @@
-import mongoose from 'mongoose';
+'use strict';
+
+let mongoose = require('mongoose');
 
 let ChannelSchema = mongoose.Schema({
 
 }, {
-  // I am not sure what yet composes a 'Channel'
-  strict: false
+    // I am not sure what yet composes a 'Channel'
+    strict: false
 });
 
-export default mongoose.model('Channel', ChannelSchema);
+module.exports = mongoose.model('Channel', ChannelSchema);

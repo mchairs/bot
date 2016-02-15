@@ -1,15 +1,17 @@
-import User from '../documents/user.doc.js';
+'use strict';
 
-export default {
-  get: () => {
+//let User = require('../documents/user.doc.js');
 
-  },
+module.exports = {
+    get: () => {
 
-  save: () => {
+    },
 
-  },
+    save: () => {
 
-  all: () => {
+    },
 
-  }
+    all: () => {
+
+    }
 };
