@@ -8,7 +8,7 @@ module.exports = {
     },
 
     save: (userData, done) => {
-        new User(userData).save(done);
+        User.create(userData, done);
     },
 
     all: (done) => {

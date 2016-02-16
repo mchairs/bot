@@ -6,9 +6,9 @@ module.exports = {
     get: (channelId, done) => {
         Channel.find({channelId: channelId}, done);
     },
-    
+
     save: (channelData, done) => {
-        new Channel(channelData).save(done);
+        Channel.create(channelData, done);
     },
 
     all: (done) => {
