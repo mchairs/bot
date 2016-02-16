@@ -35,7 +35,7 @@ gulp.task('check', ['lint', 'cover']);
 gulp.task('clean-cover', () => gulp.src(['coverage'], {read:false}).pipe(clean()));
 
 gulp.task('cover', ['clean-cover'], () => {
-    gulp.src(['src/**/*.js'])
+    gulp.src(['src/**/*.js', '!src/**/*.spec.js'])
         .pipe(istanbul({
             instrumenter: isparta.Instrumenter,
             includeUntested: true
