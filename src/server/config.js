@@ -14,12 +14,12 @@ module.exports = {
             ################################################################################
 
             mchairs.chat
-            Musical Chairs for Slack
+            Musical Chairs Bot
 
             Copyright Christopher Asche & Thomas Jansen 2016
             Licensed under MIT
 
-            <> mit ein Mass
+            <> mit Oa Maß
 
             Twitter: @mchairs_chat
             Email: mchairs.chat@gmail.com
