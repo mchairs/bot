@@ -42,7 +42,7 @@ gulp.task('cover', ['clean-cover'], () => {
         }))
         .pipe(istanbul.hookRequire())
         .on('finish', () => {
-            gulp.src('test/**/*.js', {read: false})
+            gulp.src('src/**/*.spec.js', {read: false})
             .pipe(mocha({
                 reporter: 'nyan'
             }))
