@@ -14,9 +14,9 @@ async.series([
     (done) => {
         // Are we ok to start?
         if (!config.ok()) {
-            done(`Sorry dude, to launch your bot you need a CLIENT_ID (${config.slack.clientId}),
-            CLIENT_SECRET (${config.slack.clientSecret}), REDIRECT (${config.slack.redirectUri}) and
-            PORT (${config.port})`);
+            done(`Sorry dude, to launch your bot you need a CLIENT_ID (${config.slack.clientId}),` +
+            ` CLIENT_SECRET (${config.slack.clientSecret}), REDIRECT (${config.slack.redirectUri})` +
+            ` and PORT (${config.port})`);
         }
 
         log.info(config.describe());

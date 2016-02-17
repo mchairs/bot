@@ -48,8 +48,8 @@ class BotController {
             }
 
             done(undefined, teams);
-        }));
-    },
+        });
+    }
 
     addBot(bot) {
         this._bots[bot.config.token] = bot;
