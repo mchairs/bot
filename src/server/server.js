@@ -73,4 +73,4 @@ async.series([
     }
 });
 
-http.createServer(app).listen(config.port)
+http.createServer(app).listen(config.port);
