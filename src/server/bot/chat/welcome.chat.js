@@ -1,10 +1,6 @@
 'use strict';
 
-module.exports = [
-    {
-        func: 'on',
-        args: ['rtm_open', (bot) => bot.say('I\'m back!')]
-    }, {
+module.exports = [ {
         func: 'on',
         args: ['channel_joined', (bot) => bot.say('I\'m here!')]
     }, {
