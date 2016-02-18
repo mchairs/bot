@@ -14,7 +14,7 @@ class BotController {
         this.botkit = botkit.slackbot({ storage: store });
         this.botkit
             .configureSlackApp(configData)
-            .on('create_bot', function(bot, config) {
+            .on('create_bot', (bot, config) => {
                 if (!this._botExists(bot)) {
                     this._startBot(bot);
                 }
