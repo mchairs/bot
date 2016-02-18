@@ -1,17 +1,31 @@
 'use strict';
 
-let User = require('../documents/user.doc.js');
+let Users = require('../documents/user.doc.js');
+
+var unwrapFromList = function(done) {
+    return function(err, data) {
+        if (err) {
+            return done(err);
+        }
+        done(null, data);
+    };
+};
 
 module.exports = {
-    get: (userId, done) => {
-        User.find({userId: userId}, done);
+    get: (id, done) => {
+        Users.findOne({id: id}, unwrapFromList(done));
     },
 
-    save: (userData, done) => {
-        User.create(userData, done);
+    save: (data, done) => {
+        Users.findOneAndUpdate({
+            id: data.id
+        }, data, {
+            upsert: true,
+            new: true
+        }, done);
     },
 
     all: (done) => {
-        User.find({}, done);
+        Users.find({}, done);
     }
 };
