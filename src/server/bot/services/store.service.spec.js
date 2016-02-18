@@ -11,42 +11,43 @@ const Channel = require('../documents/channel.doc.js');
 describe('Store', () => {
     describe('teams', () => {
         let t = {
-            teamId: 'blueTeam',
+            id: 'blueTeam',
             stuff: 'some stuff'
         };
 
         let aBunchOfTeams = [
-            { teamId: 'blueTeam' },
-            { teamId: 'redTeam' },
-            { teamId: 'theATeam' }
+            { id: 'blueTeam' },
+            { id: 'redTeam' },
+            { id: 'theATeam' }
         ];
 
-        let createStub, findStub;
+        let createStub, findStub, findOneStub;
 
         beforeEach(() => {
-            createStub = sinon.stub(Team, 'create', function(args, done) {
-                assert.deepEqual(args, t);
+            createStub = sinon.stub(Team, 'findOneAndUpdate', (id, data, options, done) => {
+                assert.deepEqual({ id: t.id}, id);
                 done(undefined, {});
             });
 
+            findOneStub = sinon.stub(Team, 'findOne', function(args, done) {
+                assert.deepEqual(args, { id: t.id });
+                done(undefined, t);
+            });
+
             findStub = sinon.stub(Team, 'find', function(args, done) {
-                if (Object.keys(args).length < 1) {
-                    done(undefined, aBunchOfTeams);
-                } else {
-                    assert.deepEqual(args, { teamId: t.teamId });
-                    done(undefined, t);
-                }
+                done(undefined, aBunchOfTeams);
             });
         });
 
         afterEach(() => {
             createStub.restore();
             findStub.restore();
+            findOneStub.restore();
         });
 
         it('Can save and get the same team', (done) => {
             Store.teams.save(t, () => {
-                Store.teams.get(t.teamId, (e, result) => {
+                Store.teams.get(t.id, (e, result) => {
                     assert.ok(!e);
                     assert.deepEqual(result, t);
                     done();
@@ -65,43 +66,44 @@ describe('Store', () => {
 
     describe('users', () => {
         let u = {
-            userId: 'John-117',
+            id: 'John-117',
             stuff: 'some stuff'
         };
 
         let aBunchOfUsers = [
-            { userId: 'John-117' },
-            { userId: 'Fred-104' },
-            { userId: 'Kelly-087' },
-            { userId: 'Linda-058' }
+            { id: 'John-117' },
+            { id: 'Fred-104' },
+            { id: 'Kelly-087' },
+            { id: 'Linda-058' }
         ];
 
-        let createStub, findStub;
+        let createStub, findStub, findOneStub;
 
         beforeEach(() => {
-            createStub = sinon.stub(User, 'create', function(args, done) {
-                assert.deepEqual(args, u);
+            createStub = sinon.stub(User, 'findOneAndUpdate', function(id, data, options, done) {
+                assert.deepEqual({ id: u.id}, id);
                 done(undefined, {});
             });
 
+            findOneStub = sinon.stub(User, 'findOne', function(args, done) {
+                assert.deepEqual(args, { id: u.id });
+                done(undefined, u);
+            });
+
             findStub = sinon.stub(User, 'find', function(args, done) {
-                if (Object.keys(args).length < 1) {
-                    done(undefined, aBunchOfUsers);
-                } else {
-                    assert.deepEqual(args, { userId: u.userId });
-                    done(undefined, u);
-                }
+                done(undefined, aBunchOfUsers);
             });
         });
 
         afterEach(() => {
             createStub.restore();
+            findOneStub.restore();
             findStub.restore();
         });
 
         it('Can save and get the same user', (done) => {
             Store.users.save(u, () => {
-                Store.users.get(u.userId, (e, result) => {
+                Store.users.get(u.id, (e, result) => {
                     assert.ok(!e);
                     assert.deepEqual(result, u);
                     done();
@@ -120,43 +122,44 @@ describe('Store', () => {
 
     describe('channels', () => {
         let c = {
-            channelId: 'Wildflowers',
+            id: 'Wildflowers',
             stuff: 'some stuff'
         };
 
         let aBunchOfChannels = [
-            { channelId: 'Wildflowers' },
-            { channelId: 'Full Moon Fever' },
-            { channelId: 'Damn the Torpedoes' },
-            { channelId: 'Southern Accents' }
+            { id: 'Wildflowers' },
+            { id: 'Full Moon Fever' },
+            { id: 'Damn the Torpedoes' },
+            { id: 'Southern Accents' }
         ];
 
-        let createStub, findStub;
+        let createStub, findOneStub, findStub;
 
         beforeEach(() => {
-            createStub = sinon.stub(Channel, 'create', function(args, done) {
-                assert.deepEqual(args, c);
+            createStub = sinon.stub(Channel, 'findOneAndUpdate', function(id, data, options, done) {
+                assert.deepEqual({ id: c.id}, id);
                 done(undefined, {});
             });
 
+            findOneStub = sinon.stub(Channel, 'findOne', function(args, done) {
+                assert.deepEqual(args, { id: c.id });
+                done(undefined, c);
+            });
+
             findStub = sinon.stub(Channel, 'find', function(args, done) {
-                if (Object.keys(args).length < 1) {
-                    done(undefined, aBunchOfChannels);
-                } else {
-                    assert.deepEqual(args, { channelId: c.channelId });
-                    done(undefined, c);
-                }
+                done(undefined, aBunchOfChannels);
             });
         });
 
         afterEach(() => {
             createStub.restore();
+            findOneStub.restore();
             findStub.restore();
         });
 
         it('Can save and get the same channel', (done) => {
             Store.channels.save(c, () => {
-                Store.channels.get(c.channelId, (e, result) => {
+                Store.channels.get(c.id, (e, result) => {
                     assert.ok(!e);
                     assert.deepEqual(result, c);
                     done();

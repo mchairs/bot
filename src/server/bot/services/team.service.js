@@ -1,17 +1,31 @@
 'use strict';
 
-let Team = require('../documents/team.doc.js');
+const Teams = require('../documents/team.doc.js');
+
+let unwrapFromList = function(done) {
+    return function(err, data) {
+        if (err) {
+            return done(err);
+        }
+        done(null, data);
+    };
+};
 
 module.exports = {
-    get: (teamId, done) => {
-        Team.find({teamId: teamId}, done);
+    get: (id, done) => {
+        Teams.findOne({id: id}, unwrapFromList(done));
     },
 
-    save: (teamData, done) => {
-        Team.create(teamData, done);
+    save: (data, done) => {
+        Teams.findOneAndUpdate({
+            id: data.id
+        }, data, {
+            upsert: true,
+            new: true
+        }, done);
     },
 
     all: (done) => {
-        Team.find({}, done);
+        Teams.find({}, done);
     }
 };
