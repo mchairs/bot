@@ -26,7 +26,7 @@ module.exports = {
 
         Musical Chairs Bot
 
-        Copyright Christopher Asche & Thomas Jansen 2016
+        Copyright Christopher Asche, Thomas Jansen and Roman Kostka 2016 
         Licensed under MIT
 
         <> mit Oa Maß
