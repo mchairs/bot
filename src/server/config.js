@@ -7,13 +7,14 @@ module.exports = {
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     scopes: [
-        'incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read', 'chat:write:bot'
+        'bot', 'incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read',
+        'chat:write:bot'
     ],
     redirectUri: process.env.REDIRECT_URI,
     documents: [
         path.resolve(__dirname, 'bot/documents/*.js')
     ],
-    
+
     ok: function() {
         return this.clientId && this.clientSecret && this.redirectUri && this.port;
     },
