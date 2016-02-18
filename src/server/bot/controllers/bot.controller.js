@@ -15,7 +15,9 @@ class BotController {
         this.botkit
             .configureSlackApp(configData)
             .on('create_bot', function(bot, config) {
-
+                if (!this._botExists(bot)) {
+                    this._startBot(bot);
+                }
             });
 
         return this;
@@ -25,7 +27,6 @@ class BotController {
         this.botkit
             .createWebhookEndpoints(app)
             .createOauthEndpoints(app, oauth);
-
         return this;
     }
 
@@ -37,13 +38,7 @@ class BotController {
 
             for (let t in teams) {
                 if (teams[t].bot) {
-                    var bot = this.botkit.spawn(teams[t]).startRTM((err) => {
-                        if (err) {
-                            log.error('Error connecting bot to Slack:', err);
-                        } else {
-                            this.addBot(bot);
-                        }
-                    });
+                    this._startBot(this.botkit.spawn(teams[t]));
                 }
             }
 
@@ -51,8 +46,22 @@ class BotController {
         });
     }
 
-    addBot(bot) {
+    _addBot(bot) {
         this._bots[bot.config.token] = bot;
+    }
+
+    _botExists(bot) {
+        return !!this._bots[bot.config.token];
+    }
+
+    _startBot(bot) {
+        bot.startRTM((err) => {
+            if (err) {
+                log.error('Error connecting bot to Slack:', err);
+            } else {
+                this._addBot(bot);
+            }
+        });
     }
 }
 

@@ -14,7 +14,7 @@ async.series([
     (done) => {
         // Are we ok to start?
         if (!config.ok()) {
-            done(`Sorry dude, to launch your bot you need a CLIENT_ID (${config.slack.clientId}),` +
+            done(`Sorry dude, to launch your bot you need a CLIENT_ID (${config.clientId}),` +
             ` CLIENT_SECRET (${config.slack.clientSecret}), REDIRECT (${config.slack.redirectUri})` +
             ` and PORT (${config.port})`);
         }
@@ -54,7 +54,12 @@ async.series([
     (done) => {
         // Bootstrap slack app
         botController
-            .init(config.slack)
+            .init({
+                clientId: config.clientId,
+                clientSecret: config.clientSecret,
+                scopes: config.scopes,
+                redirectUri: config.redirectUri
+            })
             .attachExpress(app)
             .connectTeams((err, teams) => {
                 if (err) {
