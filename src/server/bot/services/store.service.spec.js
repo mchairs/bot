@@ -88,12 +88,12 @@ describe('Store', () => {
         let createStub, findStub, findOneStub;
 
         beforeEach(() => {
-            createStub = sinon.stub(User, 'findOneAndUpdate', function(id, data, options, done) {
+            createStub = sinon.stub(User, 'findOneAndUpdate', (id, data, options, done) => {
                 assert.deepEqual({ id: u.id}, id);
                 done(undefined, {});
             });
 
-            findOneStub = sinon.stub(User, 'findOne', function(args) {
+            findOneStub = sinon.stub(User, 'findOne', (args) => {
                 assert.deepEqual(args, { id: u.id });
                 return {
                     lean: () => {
@@ -102,7 +102,7 @@ describe('Store', () => {
                 };
             });
 
-            findStub = sinon.stub(User, 'find', function() {
+            findStub = sinon.stub(User, 'find', () => {
                 return {
                     lean: () => {
                         return { exec: (done) => done(null, aBunchOfUsers) };
@@ -152,12 +152,12 @@ describe('Store', () => {
         let createStub, findOneStub, findStub;
 
         beforeEach(() => {
-            createStub = sinon.stub(Channel, 'findOneAndUpdate', function(id, data, options, done) {
+            createStub = sinon.stub(Channel, 'findOneAndUpdate', (id, data, options, done) => {
                 assert.deepEqual({ id: c.id}, id);
                 done(undefined, {});
             });
 
-            findOneStub = sinon.stub(Channel, 'findOne', function(args) {
+            findOneStub = sinon.stub(Channel, 'findOne', (args) => {
                 assert.deepEqual(args, { id: c.id });
                 return {
                     lean: () => {
@@ -166,7 +166,7 @@ describe('Store', () => {
                 };
             });
 
-            findStub = sinon.stub(Channel, 'find', function() {
+            findStub = sinon.stub(Channel, 'find', () => {
                 return {
                     lean: () => {
                         return { exec: (done) => done(null, aBunchOfChannels) };
