@@ -1,19 +1,11 @@
 'use strict';
 
-let Users = require('../documents/user.doc.js');
-
-var unwrapFromList = function(done) {
-    return function(err, data) {
-        if (err) {
-            return done(err);
-        }
-        done(null, data);
-    };
-};
+const Users = require('../documents/user.doc.js');
+const unwrapFromResult = require('./unwrap.js');
 
 module.exports = {
     get: (id, done) => {
-        Users.findOne({id: id}, unwrapFromList(done));
+        Users.findOne({id: id}).lean().exec(unwrapFromResult(done));
     },
 
     save: (data, done) => {
@@ -26,6 +18,6 @@ module.exports = {
     },
 
     all: (done) => {
-        Users.find({}, done);
+        Users.find({}).lean().exec(unwrapFromResult(done));
     }
 };

@@ -67,7 +67,7 @@ async.series([
                 done(err);
             }
             teams.forEach((t) => {
-                log.info(`✓ Connected to team ${t}`);
+                log.info(`✓ Connected to team ${t.name}`);
             });
         });
 

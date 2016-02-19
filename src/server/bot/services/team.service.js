@@ -1,19 +1,11 @@
 'use strict';
 
 const Teams = require('../documents/team.doc.js');
-
-let unwrapFromList = function(done) {
-    return function(err, data) {
-        if (err) {
-            return done(err);
-        }
-        done(null, data);
-    };
-};
+const unwrapFromResult = require('./unwrap.js');
 
 module.exports = {
     get: (id, done) => {
-        Teams.findOne({id: id}, unwrapFromList(done));
+        Teams.findOne({id: id}).lean().exec(unwrapFromResult(done));
     },
 
     save: (data, done) => {
@@ -26,6 +18,6 @@ module.exports = {
     },
 
     all: (done) => {
-        Teams.find({}, done);
+        Teams.find({}).lean().exec(unwrapFromResult(done));
     }
 };

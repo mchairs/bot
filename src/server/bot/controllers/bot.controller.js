@@ -4,6 +4,7 @@ const botkit = require('botkit');
 const store = require('../services/store.service.js');
 const oauth = require('./oauth.controller.js');
 const log = require('../../log.js');
+const async = require('async');
 
 class BotController {
     constructor() {
@@ -33,12 +34,11 @@ class BotController {
     connectTeams(done) {
         this.botkit.storage.teams.all((err, teams) => {
             if (err) {
-                done(err);
+                return done(err);
             }
-
-            for (let t in teams) {
-                if (teams[t].bot) {
-                    this._startBot(this.botkit.spawn(teams[t]));
+            for (let t of teams) {
+                if (t['bot']) {
+                    this._startBot(this.botkit.spawn(t));
                 }
             }
 
