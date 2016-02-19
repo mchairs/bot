@@ -4,6 +4,7 @@ const botkit = require('botkit');
 const store = require('../services/store.service.js');
 const oauth = require('./oauth.controller.js');
 const log = require('../../log.js');
+const async = require('async');
 
 class BotController {
     constructor() {
@@ -16,7 +17,9 @@ class BotController {
             .configureSlackApp(configData)
             .on('create_bot', (bot, config) => {
                 if (!this._botExists(bot)) {
-                    this._startBot(bot);
+                    this._startBot(bot, (err) => {
+                        this._handleStartABot(err);
+                    });
                 }
             });
 
@@ -33,14 +36,17 @@ class BotController {
     connectTeams(done) {
         this.botkit.storage.teams.all((err, teams) => {
             if (err) {
-                done(err);
+                return done(err);
             }
 
-            for (let t in teams) {
+            async.eachSeries(teams, (t, done) => {
                 if (teams[t].bot) {
-                    this._startBot(this.botkit.spawn(teams[t]));
+                    this._startBot(this.botkit.spawn(teams[t], (err) => {
+                        this._handleStartABot(err);
+                        done();
+                    }));
                 }
-            }
+            });
 
             done(undefined, teams);
         });
@@ -60,15 +66,17 @@ class BotController {
         return !!this._bots[bot.config.token];
     }
 
-    _startBot(bot) {
-        bot.startRTM((err) => {
-            if (err) {
-                log.error('Error connecting bot to Slack:', err);
-            } else {
-                log.info('Bot connected:', bot);
-                this._addBot(bot);
-            }
-        });
+    _startBot(bot, done) {
+        bot.startRTM(done);
+    }
+
+    _handleStartABot(err) {
+        if (err) {
+            log.error('Error connecting bot to Slack:', err);
+        } else {
+            log.info('Bot connected:', bot);
+            this._addBot(bot);
+        }
     }
 }
 
