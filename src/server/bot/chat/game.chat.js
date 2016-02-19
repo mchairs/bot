@@ -16,7 +16,7 @@ module.exports = [
         }]
     }, {
         func: 'hears',
-        args: [['force (\d)'], ['direct_message'], (bot, msg) => {
+        args: [['force (\\d)'], ['direct_message'], (bot, msg) => {
             var c = msg.match[1];
             bot.reply(msg, `Ok, you can force on ${c}`);
         }]
