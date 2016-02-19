@@ -40,7 +40,7 @@ class BotController {
             }
 
             async.eachSeries(teams, (t, done) => {
-                if (teams[t].bot) {
+                if (t.bot) {
                     this._startBot(this.botkit.spawn(teams[t], (err) => {
                         this._handleStartABot(err);
                         done();
