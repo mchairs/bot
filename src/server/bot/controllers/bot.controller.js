@@ -65,7 +65,7 @@ class BotController {
             if (err) {
                 log.error('Error connecting bot to Slack:', err);
             } else {
-                log.info('Bot connected:', bot);
+                log.info('Bot connected:' + bot.config.token);
                 this._addBot(bot);
             }
         });
