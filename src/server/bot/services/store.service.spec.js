@@ -29,13 +29,21 @@ describe('Store', () => {
                 done(undefined, {});
             });
 
-            findOneStub = sinon.stub(Team, 'findOne', function(args, done) {
+            findOneStub = sinon.stub(Team, 'findOne', (args) => {
                 assert.deepEqual(args, { id: t.id });
-                done(undefined, t);
+                return {
+                    lean: () => {
+                        return { exec: (done) => done(null, t) };
+                    }
+                };
             });
 
-            findStub = sinon.stub(Team, 'find', function(args, done) {
-                done(undefined, aBunchOfTeams);
+            findStub = sinon.stub(Team, 'find', () => {
+                return {
+                    lean: () => {
+                        return { exec: (done) => done(null, aBunchOfTeams) };
+                    }
+                };
             });
         });
 
@@ -85,13 +93,21 @@ describe('Store', () => {
                 done(undefined, {});
             });
 
-            findOneStub = sinon.stub(User, 'findOne', function(args, done) {
+            findOneStub = sinon.stub(User, 'findOne', function(args) {
                 assert.deepEqual(args, { id: u.id });
-                done(undefined, u);
+                return {
+                    lean: () => {
+                        return { exec: (done) => done(null, u) };
+                    }
+                };
             });
 
-            findStub = sinon.stub(User, 'find', function(args, done) {
-                done(undefined, aBunchOfUsers);
+            findStub = sinon.stub(User, 'find', function() {
+                return {
+                    lean: () => {
+                        return { exec: (done) => done(null, aBunchOfUsers) };
+                    }
+                };
             });
         });
 
@@ -141,13 +157,21 @@ describe('Store', () => {
                 done(undefined, {});
             });
 
-            findOneStub = sinon.stub(Channel, 'findOne', function(args, done) {
+            findOneStub = sinon.stub(Channel, 'findOne', function(args) {
                 assert.deepEqual(args, { id: c.id });
-                done(undefined, c);
+                return {
+                    lean: () => {
+                        return { exec: (done) => done(null, c) };
+                    }
+                };
             });
 
-            findStub = sinon.stub(Channel, 'find', function(args, done) {
-                done(undefined, aBunchOfChannels);
+            findStub = sinon.stub(Channel, 'find', function() {
+                return {
+                    lean: () => {
+                        return { exec: (done) => done(null, aBunchOfChannels) };
+                    }
+                };
             });
         });
 

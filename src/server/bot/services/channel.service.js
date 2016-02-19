@@ -1,19 +1,11 @@
 'use strict';
 
 const Channels = require('../documents/channel.doc.js');
-
-let unwrapFromList = function(done) {
-    return function(err, data) {
-        if (err) {
-            return done(err);
-        }
-        done(null, data);
-    };
-};
+const unwrapFromResult = require('./unwrap.js');
 
 module.exports = {
     get: (id, done) => {
-        Channels.findOne({id: id}, unwrapFromList(done));
+        Channels.findOne({id: id}).lean().exec(unwrapFromResult(done));
     },
 
     save: (data, done) => {
@@ -26,6 +18,6 @@ module.exports = {
     },
 
     all: (done) => {
-        Channels.find({}, done);
+        Channels.find({}).lean().exec(unwrapFromResult(done));
     }
 };

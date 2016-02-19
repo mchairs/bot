@@ -17,9 +17,7 @@ class BotController {
             .configureSlackApp(configData)
             .on('create_bot', (bot, config) => {
                 if (!this._botExists(bot)) {
-                    this._startBot(bot, (err) => {
-                        this._handleStartABot(err);
-                    });
+                    this._startBot(bot);
                 }
             });
 
@@ -38,15 +36,11 @@ class BotController {
             if (err) {
                 return done(err);
             }
-
-            async.eachSeries(teams, (t, done) => {
-                if (t.bot) {
-                    this._startBot(this.botkit.spawn(teams[t], (err) => {
-                        this._handleStartABot(err);
-                        done();
-                    }));
+            for (let t of teams) {
+                if (t['bot']) {
+                    this._startBot(this.botkit.spawn(t));
                 }
-            });
+            }
 
             done(undefined, teams);
         });
@@ -66,17 +60,15 @@ class BotController {
         return !!this._bots[bot.config.token];
     }
 
-    _startBot(bot, done) {
-        bot.startRTM(done);
-    }
-
-    _handleStartABot(err) {
-        if (err) {
-            log.error('Error connecting bot to Slack:', err);
-        } else {
-            log.info('Bot connected:', bot);
-            this._addBot(bot);
-        }
+    _startBot(bot) {
+        bot.startRTM((err) => {
+            if (err) {
+                log.error('Error connecting bot to Slack:', err);
+            } else {
+                log.info('Bot connected:', bot);
+                this._addBot(bot);
+            }
+        });
     }
 }
 
