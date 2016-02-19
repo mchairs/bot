@@ -53,22 +53,35 @@ async.series([
     },
     (done) => {
         // Bootstrap slack app
-        botController
+        let slack = botController
             .init({
                 clientId: config.clientId,
                 clientSecret: config.clientSecret,
                 scopes: config.scopes,
                 redirectUri: config.redirectUri
             })
-            .attachExpress(app)
-            .connectTeams((err, teams) => {
-                if (err) {
-                    done(err);
-                }
-                teams.forEach((t) => {
-                    log.info(`✓ Connected to team ${t}`);
-                });
+            .attachExpress(app);
+
+        slack.connectTeams((err, teams) => {
+            if (err) {
+                done(err);
+            }
+            teams.forEach((t) => {
+                log.info(`✓ Connected to team ${t}`);
             });
+        });
+
+        async.eachSeries(config.chats, (p, done) => {
+            glob(p, (err, file) => {
+                if (file && file.length) {
+                    file.forEach((f) => {
+                        log.info(`✓ Using chat middleware ${f}`);
+                        slack.use(require(f));
+                    });
+                    done();
+                }
+            });
+        }, done);
     }
 
 ], (err, results) => {

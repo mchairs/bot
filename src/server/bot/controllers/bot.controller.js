@@ -46,6 +46,12 @@ class BotController {
         });
     }
 
+    use(middleware) {
+        middleware.forEach((obj) => {
+            this.botkit[obj.func](...obj.args);
+        });
+    }
+
     _addBot(bot) {
         this._bots[bot.config.token] = bot;
     }
@@ -59,6 +65,7 @@ class BotController {
             if (err) {
                 log.error('Error connecting bot to Slack:', err);
             } else {
+                log.info('Bot connected:', bot);
                 this._addBot(bot);
             }
         });

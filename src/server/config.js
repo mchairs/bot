@@ -12,7 +12,10 @@ module.exports = {
     ],
     redirectUri: process.env.REDIRECT_URI,
     documents: [
-        path.resolve(__dirname, 'bot/documents/*.js')
+        path.resolve(__dirname, 'bot/documents/*.doc.js')
+    ],
+    chats: [
+        path.resolve(__dirname, 'bot/chat/*.chat.js')
     ],
 
     ok: function() {
