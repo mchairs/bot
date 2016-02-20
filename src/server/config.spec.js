@@ -5,7 +5,6 @@ const should = require('should');
 
 describe('config', () => {
     it('ok should be ok if the env variables are set', () => {
-        // just in case someone has them set
         config.port = undefined;
         config.clientId = undefined;
         config.clientSecret = undefined;
