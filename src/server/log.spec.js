@@ -1,9 +1,11 @@
 'use strict';
 
-const Log = require('./log.js');
+const should = require('should');
+const log = require('./log.js');
 
 describe('Log', () => {
-    it('should do stuff', () => {
-
+    it('Returns a logger', () => {
+        log.should.be.instanceOf(Object);
+        should.exist(log.info);
     });
 });
