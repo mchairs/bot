@@ -1,12 +1,19 @@
 'use strict';
 
+const GameService = require('../../game/services/game.service.js');
+const Extract = require('./extract.js');
+
 module.exports = [
-    {
+{
         func: 'hears',
         args: [['start (.*) (\\d)'], ['direct_mention'], (bot, msg) => {
             var time = msg.match[1];
-            var numchairs = msg.match[2];
-            bot.reply(msg, `Ok, let's start a game at ${time} with ${numchairs} chairs`);
+            var chairs = msg.match[2];
+            if (time && chairs) {
+                GameService.create(new Date(), chairs, Extract.teamId(bot), (err, game) => {
+                    if (!err) bot.reply(msg, `Ok, let's start a game at ${game.date} with ${game.chairs} chairs`);
+                });
+            }
         }]
     }, {
         func: 'hears',
