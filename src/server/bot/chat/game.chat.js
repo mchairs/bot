@@ -12,9 +12,28 @@ module.exports = [{
             var chairs = msg.match[2];
             if (time && chairs) {
                 GameService.create(new Date(), chairs, Extract.teamId(bot), (err, game) => {
-                    if (!err) bot.reply(msg, `Ok, let's start a game at ${game.date} with ${game.chairs} chairs`);
+                    if (!err) bot.reply(msg, `Ok, let's start a game at ${game.date} with ${game.chairs} chairs.`);
                 });
             }
+        }
+    ]
+}, {
+    func: 'hears',
+    args: [
+        ['[G-g]ames'],
+        ['direct_mention'], (bot, msg) => {
+            GameService.all(Extract.teamId(bot), (err, games) => {
+                if (!err) {
+                    if (games.length < 0) {
+                        body.reply(msg, `There are no upcoming games.`);
+                    }
+                    let r = 'Ok, here are the upcoming games:\n';
+                    for (let g of games) {
+                        r += `${g.date} with ${game.chairs} chairs.`;
+                    }
+                    bot.reply(msg, r);
+                }
+            });
         }
     ]
 }, {
