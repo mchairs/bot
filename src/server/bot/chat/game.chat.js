@@ -1,7 +1,6 @@
 'use strict';
 
 const GameService = require('../../game/services/game.service.js');
-const Extract = require('./extract.js');
 
 module.exports = [{
     func: 'hears',
@@ -11,7 +10,7 @@ module.exports = [{
             var time = msg.match[1];
             var chairs = msg.match[2];
             if (time && chairs) {
-                GameService.create(new Date(), chairs, Extract.teamId(bot), (err, game) => {
+                GameService.create(new Date(), chairs, bot.config.id, (err, game) => {
                     if (!err) bot.reply(msg, `Ok, let's start a game at ${game.date} with ${game.chairs} chairs.`);
                 });
             }
@@ -22,7 +21,7 @@ module.exports = [{
     args: [
         ['[G-g]ames'],
         ['direct_mention'], (bot, msg) => {
-            GameService.all(Extract.teamId(bot), (err, games) => {
+            GameService.all(bot.config.id, (err, games) => {
                 if (!err) {
                     if (games.length < 0) {
                         body.reply(msg, `There are no upcoming games.`);
