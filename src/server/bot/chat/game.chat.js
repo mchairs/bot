@@ -29,7 +29,7 @@ module.exports = [{
                     }
                     let r = 'Ok, here are the upcoming games:\n';
                     for (let g of games) {
-                        r += `${g.date} with ${game.chairs} chairs.`;
+                        r += `${g.date} with ${g.chairs} chairs.`;
                     }
                     bot.reply(msg, r);
                 }

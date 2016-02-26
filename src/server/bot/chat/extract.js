@@ -2,6 +2,6 @@
 
 module.exports = {
     teamId: (bot) => {
-        console.log(bot);
+        bot.config.id;
     }
 };
