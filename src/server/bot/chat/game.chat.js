@@ -7,11 +7,11 @@ module.exports = [{
     args: [
         ['start (.*) (\\d+)'],
         ['direct_mention'], (bot, msg) => {
-            var time = msg.match[1];
-            var chairs = msg.match[2];
-            if (time && chairs) {
-                GameService.create(new Date(), chairs, bot.config.id, (err, game) => {
-                    if (!err) bot.reply(msg, `Ok, let's start a game at ${game.date} with ${game.chairs} chairs.`);
+            let time = msg.match[1];
+            if (time) {
+                GameService.create(new Date(), bot.config.id, (err, game) => {
+                    if (!err) bot.reply(msg, `Ok, I've scheduled a game at ${game.date}. Please opt in if you would`
+                    + ` like to play.`);
                 });
             }
         }
