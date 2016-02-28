@@ -5,7 +5,7 @@ const GameService = require('../../game/services/game.service.js');
 module.exports = [{
     func: 'hears',
     args: [
-        ['start (.*) (\\d+)'],
+        ['start (.*)'],
         ['direct_mention'], (bot, msg) => {
             let time = msg.match[1];
             if (time) {
