@@ -1,7 +1,7 @@
 'use strict';
 
 const should = require('should');
-const Games = require('./games.resolve.js');
+const Games = require('./games.resolution.js');
 const Game = require('../../game/documents/game.doc.js');
 const sinon = require('sinon');
 const assert = require('assert');
