@@ -2,12 +2,13 @@
 
 const GameService = require('../../game/services/game.service.js');
 const log = require('../../log.js');
+const chrono = require('chrono-node');
 
 module.exports = {
     resolve: (bot, msg) => {
-        let time = msg.match[1];
-        if (time) {
-            GameService.create(new Date(), bot.config.id, (err, game) => {
+        let date = chrono.parseDate(msg.match[1]);
+        if (date) {
+            GameService.create(date, bot.config.id, (err, game) => {
                 if (!err) {
                     bot.reply(msg, `Ok, I've scheduled a game at ${game.date}. Please opt in if you would`
                         + ` like to play.`);
@@ -17,7 +18,7 @@ module.exports = {
                 }
             });
         } else {
-            bot.reply(msg, 'Hold on there cowboy, are you sure you didn\'t make a mistake there?');
+            bot.reply(msg, 'I\'m sorry Dave. I\'m afraid I can\'t do that.');
         }
     }
 };

@@ -71,11 +71,11 @@ async.series([
             });
         });
 
-        async.eachSeries(config.chats, (p, done) => {
+        async.eachSeries(config.commands, (p, done) => {
             glob(p, (err, file) => {
                 if (file && file.length) {
                     file.forEach((f) => {
-                        log.info(`✓ Using chat middleware ${f}`);
+                        log.info(`✓ Using command middleware ${f}`);
                         slack.use(require(f));
                     });
                     done();
