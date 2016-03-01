@@ -1,10 +1,13 @@
 'use strict';
 
-const should = require('should');
-const Force = require('./force.resolve.js');
+const assert = require('assert');
+const force = require('./force.resolve.js');
+const sinon = require('sinon');
 
 describe('Force', () => {
-    it('It should do stuff', () => {
-    
+    it('It should call bot.reply', () => {
+        let reply = sinon.spy();
+        force.resolve({ reply: reply }, { match: ['foo'] });
+        assert(reply.called);
     });
 });
