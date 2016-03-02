@@ -5,7 +5,7 @@ const async = require('async');
 const should = require('should');
 
 const chats = [
-    path.resolve(__dirname, './*.chat.js')
+    path.resolve(__dirname, './*.command.js')
 ];
 
 // tests each chat file to make sure it follows the correct format

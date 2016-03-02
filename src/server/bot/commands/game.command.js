@@ -1,9 +1,9 @@
 'use strict';
 
-const Start = require('../resolves/start.resolve.js');
-const Games = require('../resolves/games.resolve.js');
-const Sit = require('../resolves/sit.resolve.js');
-const Force = require('../resolves/force.resolve.js');
+const Start = require('../resolutions/start.resolution.js');
+const Games = require('../resolutions/games.resolution.js');
+const Sit = require('../resolutions/sit.resolution.js');
+const Force = require('../resolutions/force.resolution.js');
 
 module.exports = [{
     func: 'hears',

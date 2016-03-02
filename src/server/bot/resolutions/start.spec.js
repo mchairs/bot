@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const start = require('./start.resolve.js');
+const start = require('./start.resolution.js');
 const sinon = require('sinon');
 const Games = require('../../game/documents/game.doc.js');
 
