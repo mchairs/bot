@@ -1,36 +1,44 @@
 'use strict';
 
-const Start = require('../resolutions/start.resolution.js');
-const Games = require('../resolutions/games.resolution.js');
-const Sit = require('../resolutions/sit.resolution.js');
-const Force = require('../resolutions/force.resolution.js');
+const start = require('../resolutions/start.resolution.js');
+const games = require('../resolutions/games.resolution.js');
+const sit = require('../resolutions/sit.resolution.js');
+const force = require('../resolutions/force.resolution.js');
+const optIn = require('../resolutions/optin.resolution.js');
 
 module.exports = [{
     func: 'hears',
     args: [
         ['start (.*)'],
         ['direct_mention'],
-        Start.resolve
+        start.resolve
     ]
 }, {
     func: 'hears',
     args: [
         ['[G-g]ames'],
         ['direct_mention'],
-        Games.resolve
+        games.resolve
     ]
 }, {
     func: 'hears',
     args: [
         ['sit (\\d)'],
         ['direct_message'],
-        Sit.resolve
+        sit.resolve
     ]
 }, {
     func: 'hears',
     args: [
         ['force (\\d)'],
         ['direct_message'],
-        Force.resolve
+        force.resolve
+    ]
+}, {
+    func: 'hears',
+    args: [
+        ['[O-o]pt in'],
+        ['direct_message'],
+        optIn.resolve
     ]
 }];
